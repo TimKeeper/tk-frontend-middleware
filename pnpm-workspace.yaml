@@ -1,0 +1,9 @@
+packages:
+  - packages/config/*
+  - packages/tools/*
+  - packages/plugin/*
+  - packages/cli/*
+  - packages/vue/*
+  - packages/resources/*
+  - packages/docs/*
+  - docs/*

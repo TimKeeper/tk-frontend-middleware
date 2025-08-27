@@ -1,0 +1,3 @@
+{
+  "extends": "@tk/tsconfig/tsconfig.dom.json"
+}

@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "frontend-middleware.names.fullname" . }}
+  labels:
+{{ include "frontend-middleware.labels.standard" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+{{ include "frontend-middleware.labels.matchLabels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "frontend-middleware.labels.matchLabels" . | indent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.frontendImage.repository }}:{{ .Values.frontendImage.tag }}"
+          imagePullPolicy: "{{ .Values.frontendImage.imagePullPolicy }}"
+          ports:
+          - name: http
+            containerPort: 80
+          - name: https
+            containerPort: 443
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:    #挂载到容器内部的存储卷配置
+          - mountPath: /etc/nginx/nginx.conf
+            name: nginx-conf
+            subPath: nginx.conf
+          - mountPath: /data/certs
+            name: ssl
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: {{ template "frontend-middleware.names.fullname" . }}
+          items:
+          - key: nginx.conf
+            path: nginx.conf
+      - name: ssl
+        secret:
+          defaultMode: 416
+          items:
+            - key: tls.crt
+              path: tls.crt
+            - key: tls.key
+              path: tls.key
+          secretName: {{ include "frontend-middleware.names.fullname" . }}

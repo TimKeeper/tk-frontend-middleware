@@ -1,0 +1,9 @@
+{
+  "name": "@tk/tsconfig",
+  "version": "0.1.0",
+  "license": "MIT",
+  "keywords": [
+    "tsconfig"
+  ],
+  "main": "tsconfig.json"
+}

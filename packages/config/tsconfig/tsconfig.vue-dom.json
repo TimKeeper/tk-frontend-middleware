@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.vue.json",
+  "compilerOptions": {
+    "lib": [
+      // 目标设为 ESNext
+      // 至少需要高于以 Vite 对齐需求的 ES2020
+      // <https://vitejs.dev/config/build-options.html#build-target>
+      // 对于更新版本的语言内置支持
+      // 由用户自行包含，因为这需要：
+      //   - 要么项目不需要支持旧版本的浏览器；
+      //   - 要么项目已经正确包含了必要的 polyfill。
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+
+      // 没有 `ScriptHost`，因为 Vue 3 已经不再支持 IE
+    ]
+  }
+}

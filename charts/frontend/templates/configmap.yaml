@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "frontend-middleware.names.fullname" . }}
+  labels:
+    app: {{ template "frontend-middleware.names.fullname" . }}
+    chart: {{ template "frontend-middleware.names.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+data:
+  nginx.conf: |-
+{{- .Files.Get "nginx.conf" | nindent 4 }}

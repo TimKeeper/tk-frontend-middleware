@@ -1,0 +1,21 @@
+nameOverride: ''
+
+fullnameOverride: ''
+
+replicaCount: 1
+
+frontendImage:
+  repository: swr.cn-north-1.myhuaweicloud.com/x-ruantong-dev/frontend-middleware
+  tag: '0.1.0'
+  imagePullPolicy: Always
+
+imagePullSecrets:
+  - name: lsh-repo
+
+resources: {}
+
+certs:
+  tls.crt: >-
+    dG9kZQ==
+  tls.key: >-
+    dG9kZQ==

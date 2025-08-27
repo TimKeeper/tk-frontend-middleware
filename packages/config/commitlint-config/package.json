@@ -1,0 +1,16 @@
+{
+  "name": "@tk/commitlint-config",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "commit message 校验配置模板",
+  "keywords": [
+    "frontend",
+    "commitlint",
+    "commitlintconfig",
+    "commitlint-config"
+  ],
+  "main": "./index.js",
+  "dependencies": {
+    "@commitlint/config-conventional": "^19.6.0"
+  }
+}

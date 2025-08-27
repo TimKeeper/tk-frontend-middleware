@@ -1,0 +1,6 @@
+**/*.js
+**/*.cjs
+**/*.min.css
+**/dist/
+**/vendor/
+**/node_modules/

@@ -1,0 +1,27 @@
+{
+  "name": "@tk/stylelint-config",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Style 静检配置模板",
+  "keywords": [
+    "frontend",
+    "template",
+    "stylelint",
+    "stylelintconfig",
+    "stylelint-config"
+  ],
+  "main": "./index.js",
+  "peerDependencies": {
+    "stylelint": "*"
+  },
+  "dependencies": {
+    "postcss": "^8.4.49",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-recess-order": "^5.1.1",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
+    "stylelint-declaration-strict-value": "^1.10.6",
+    "stylelint-prettier": "^5.0.2"
+  }
+}

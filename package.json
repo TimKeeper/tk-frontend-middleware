@@ -1,0 +1,61 @@
+{
+  "name": "frontend-middleware",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "前端中间件",
+  "homepage": "https://github.com/TimKeeper/tk-frontend-middleware/blob/main/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimKeeper/tk-frontend-middleware.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TimKeeper/tk-frontend-middleware/issues"
+  },
+  "keywords": [
+    "frontend",
+    "middleware",
+    "lint",
+    "config"
+  ],
+  "engines": {
+    "node": ">=18.12.0"
+  },
+  "scripts": {
+    "bootstrap": "pnpm install && pnpm build",
+    "prepare": "husky && git config commit.template .commit-template || true",
+    "build": "pnpm -r --workspace-concurrency=1 --stream build && pnpm i",
+    "test": "pnpm --parallel --stream test",
+    "clean": "pnpm --parallel --stream clean && rimraf --glob ./node_modules ./packages/**/*/node_modules"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.0",
+    "@tk/commitlint-config": "workspace:*",
+    "@tk/eslint-config": "workspace:*",
+    "@tk/stylelint-config": "workspace:*",
+    "@tk/tsconfig": "workspace:*",
+    "cpx2": "^7.0.2",
+    "eslint": "^9.16.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
+    "sass": "1.77.8",
+    "stylelint": "^16.11.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vuepress": "2.0.0-rc.14"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "@typescript-eslint/utils>eslint": "^9.0.0",
+        "@typescript-eslint/eslint-plugin>eslint": "^9.0.0",
+        "@typescript-eslint/type-utils>eslint": "^9.0.0",
+        "eslint-plugin-unused-imports>eslint": "^9.0.0",
+        "@typescript-eslint/parser>eslint": "^9.0.0"
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+# node modules
+node_modules
+
+# MacOS desktop services store
+.DS_Store
+/local
+
+# local env files
+.env.local
+.env.*.local
+
+# yarn v2+
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.js
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Meta files
+TODOs.md
+
+# Editors
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+# VuePress temp directory
+.temp
+.cache
+
+# Docs dist directory
+/vuepress
+
+# Typescript build dist
+packages/@vuepress/shared-utils/lib/
+packages/@vuepress/shared-utils/types/
+/package-lock.json
+/dist
+
+# jest 测试报表
+coverage
+
+# 本地开发产物
+dist
+temp
+explorations
+.eslintcache
+dts-build/packages
+*.tsbuildinfo

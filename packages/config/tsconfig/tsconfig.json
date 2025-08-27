@@ -1,0 +1,103 @@
+{
+  "compilerOptions": {
+    // 当 "incremental": true 被设置时，TypeScript 编译器会在第一次完整编译后生成一个增量编译文件（.tsbuildinfo 文件）。
+    //  -这个文件包含了编译过程中生成的元数据，允许 TypeScript 在后续编译中只重新编译那些自上次编译以来发生变化的文件，而不是重新编译整个项目。
+    //  -这可以显著减少编译时间，特别是在大型项目中。
+    "incremental": true,
+
+    // 一些注意事项：
+    // - Vue 3 支持 ES2016+
+    // - 对于 Vite，实际的编译目标由 Vite 配置中的 `build.target` 选项决定。
+    //   所以不要在这里更改 `target` 字段。它必须至少是 `ES2020`，以使动态 `import()` 和 `import.meta` 正常工作。
+    // - 如果你不使用 Vite，可以随意覆盖 `target` 字段。
+    "target": "ESNext",
+
+    // `allowImportingTsExtensions` 只能在 `noEmit` 或 `emitDeclarationOnly` 设置时使用。
+    // 但是 `noEmit` 可能会导致解决方案风格的 tsconfigs 出现问题：
+    // <https://github.com/microsoft/TypeScript/issues/49844>
+    // 而 `emitDeclarationOnly` 并不总是需要。
+    // 考虑到它不太可能在 Vue 代码库中常用，我们在这里不启用它。
+
+    "lib": ["ESNext"],
+
+    // 为了规范的编译。
+    // 如果 `target` 是 `ES2020` 或更高版本，默认为 `true`。
+    // 这里明确设置为 `true`，以防某些用户想覆盖 `target`。
+    "useDefineForClassFields": true,
+
+    // 启用对装饰器（decorators）语法的支持。
+    //  -装饰器是一种特殊的声明，可以附加到类声明、方法、访问器、属性或参数上，用于修改它们的行为。
+    //  -装饰器在 TypeScript 中仍然是一个实验性特性，因此需要通过设置 "experimentalDecorators": true 来显式启用。
+    "experimentalDecorators": true,
+
+    // 只要你在使用构建工具，我们建议你使用 ES 模块进行编写和发布。
+    // 即使你是针对 Node.js，因为
+    //  - `CommonJS` 太过时了
+    //  - 生态系统还没有完全跟上 `Node16`/`NodeNext`
+    // 这个建议包括像 Vitest、Vite 配置文件、Vite SSR 等环境。
+    "module": "ESNext",
+
+    // 我们期望用户使用打包工具。
+    // 因此我们启用了一些仅在打包工具中可用的解析功能。
+    "moduleResolution": "bundler",
+
+    // 处理并解析 JSON 文件（.json 文件），使得可以像导入 TypeScript 或 JavaScript 模块一样导入 JSON 文件。
+    "resolveJsonModule": true,
+
+    // 允许 TypeScript 编译器处理 JavaScript 文件
+    "allowJs": true,
+
+    // 启用 TypeScript 的严格模式。具体来说，"strict": true 会启用以下几个子选项：
+    //  -strictNullChecks**：确保变量在使用前已经被赋值，防止 null 和 undefined 值的意外使用。
+    //  -strictFunctionTypes**：加强对函数类型的检查，确保函数参数和返回值的类型匹配。
+    //  -strictBindCallApply**：严格检查 bind、call 和 apply 方法的参数类型。
+    //  -strictPropertyInitialization**：确保类的实例属性在构造函数中被正确初始化。
+    //  -noImplicitAny**：防止隐式的 any 类型，要求显式声明所有类型。
+    //  -noImplicitThis**：确保 this 的类型在函数中被正确推断。
+    //  -alwaysStrict**：在每个文件中启用 JavaScript 的严格模式（"use strict"）。
+    "strict": true,
+
+    // "noImplicitOverride": true，要求在子类中显式地使用 override 关键字来标识那些重写了父类方法或属性的方法或属性。
+    "noImplicitOverride": true,
+
+    // `"noImplicitThis": true` 是 `strict` 的一部分
+    // 这里再次添加是为了防止某些用户决定禁用 `strict`。
+    // 这对 `this` 上的数据属性启用更严格的推断。
+    "noImplicitThis": true,
+
+    // 用于启用对未使用的局部变量的检查。
+    // "noUnusedLocals": true,
+
+    // 大多数非库项目不需要生成声明文件。
+    // 因此我们默认添加此选项，以使配置对大多数用户更加友好。
+    "noEmit": true,
+
+    // 当使用解决方案风格的 tsconfigs 进行类型检查时，尽管设置了 `noEmit: true`，
+    // 不会生成任何 `.d.ts` 文件，但 tsc 仍会为每个项目写一个 `.tsbuildinfo` 文件到 `outDir`。
+    // 如果我们不明确设置 `outDir`，它会在与 `tsconfig.json` 文件相同的文件夹中，看起来会很杂乱。
+    // 将其设置为 `./dist/` 也不理想，因为它会污染 `dist` 文件夹。
+    // 所以我们将其设置为 `node_modules` 中的一个隐藏文件夹，以避免污染项目根目录。
+    // FIXME:
+    // 这引起了一个回归问题：https://github.com/vuejs/tsconfig/issues/27
+    // 需要找到更好的解决方案。
+    // "outDir": "./node_modules/.cache/vue-tsbuildinfo",
+
+    // "sourceMap": true,
+
+    // 推荐设置
+    "esModuleInterop": true,
+    // 制文件名在导入时保持一致的大小写。
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    // "verbatimModuleSyntax": true 是一个配置选项，用于保留模块导入和导出的语法原样，而不进行任何转换。
+    // TypeScript 编译器会在编译过程中保留所有的 import 和 export 语句，而不会将它们转换为其他模块格式（如 CommonJS）。
+    // 这对于某些特定的构建工具和运行时环境非常有用，因为这些工具和环境可能需要原始的模块语法来进行进一步的处理或优化。
+    // <https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/#verbatimmodulesyntax>
+    // 任何没有类型修饰符的导入或导出都会保留下来。对于 `<script setup>` 这很重要。
+    // 任何使用类型修饰符的都会被完全删除。
+    "verbatimModuleSyntax": true,
+    // 跳过对声明文件（.d.ts 文件）的类型检查。
+    // 见 <https://github.com/vuejs/vue-cli/pull/5688>
+    "skipLibCheck": true
+  }
+}
