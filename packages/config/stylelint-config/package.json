@@ -1,5 +1,5 @@
 {
-  "name": "@tk/stylelint-config",
+  "name": "tk-stylelint-config",
   "type": "module",
   "version": "0.1.0",
   "description": "Style 静检配置模板",

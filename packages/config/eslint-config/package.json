@@ -1,5 +1,5 @@
 {
-  "name": "@tk/eslint-config",
+  "name": "tk-eslint-config",
   "type": "module",
   "version": "0.1.0",
   "description": "Eslint 静检配置模板",

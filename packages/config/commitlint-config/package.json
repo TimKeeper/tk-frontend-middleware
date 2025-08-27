@@ -1,5 +1,5 @@
 {
-  "name": "@tk/commitlint-config",
+  "name": "tk-commitlint-config",
   "type": "module",
   "version": "0.1.0",
   "description": "commit message 校验配置模板",
